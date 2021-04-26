@@ -1,0 +1,16 @@
+body{
+    margin: 10px 10px 30px 10px;
+}
+h1{
+    text-align: center;
+    color: #5f0177;
+}
+
+#pass, #user , #value1, #value2, #confirmPassword{
+    color: red;
+    display: none;
+}
+.input_values{
+    text-align: center;
+    color: #01725a;
+}
