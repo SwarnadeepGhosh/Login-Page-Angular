@@ -4,6 +4,7 @@ body{
 h1{
     text-align: center;
     color: #5f0177;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 #pass, #user , #value1, #value2, #confirmPassword{
@@ -13,4 +14,10 @@ h1{
 .input_values{
     text-align: center;
     color: #01725a;
+}
+.danger{
+    color: red;
+}
+.successs{
+    color:green;
 }
