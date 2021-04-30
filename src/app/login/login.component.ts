@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.myForm = this.formBuilder.group({
-      userId: ['', [Validators.required, Validators.pattern('/^[a-zA-Z0-9\-]+$/')]],
+      userId: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\-]+$')]],
       pass: ['', Validators.required]
     })
   }

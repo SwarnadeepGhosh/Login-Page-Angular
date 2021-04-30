@@ -19,7 +19,7 @@
                     <div *ngIf="myForm.controls.pass.errors.required" class="danger"> Sorry, Username is required</div>
                 </div>
             </div>
-            <a href="/register"><button type="button" class="btn btn-link">Not Registered? Register Here</button></a>
+            <a routerLink="/reg"><button type="button" class="btn btn-link">Not Registered? Register Here</button></a>
             <input type="submit" class="btn btn-primary float-right" value="Login">
             <h5 *ngIf="success" class="successs mt-4">Login successful</h5>
         </form>
