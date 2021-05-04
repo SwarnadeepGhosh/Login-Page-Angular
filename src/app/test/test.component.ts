@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CarService } from '../car.service';
+import {Car} from '../Car';
 
 @Component({
   selector: 'app-test',
@@ -6,15 +8,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit {
-  title:string = 'TCSer';
+  title: string = 'TCSer';
+  public greeting = "";
 
-  constructor() { 
-    setTimeout(() => {
-      this.title = "Learner";
-    }, 2000);
+  public cars:Car[] = [];
+
+  //for normal injection, constructor(private _carService: CarService) 
+  constructor(private _carService: CarService) {
   }
 
   ngOnInit(): void {
+    //for normal injection, this.cars = this._carService.getCars();
+    this._carService.getCars().subscribe(data => this.cars = data);
+  }
+
+  onClick(event: any) {
+    console.log(event);
+    this.greeting = "Hello User";
+    console.log(event.toElement.value);
+    console.log(event.target.value);
+  }
+
+  log(value: string) {
+    console.log(value);
   }
 
 }
+
+
+//setTimeout(() => {
+    //  this.title = "Learner";
+    //}, 2000);

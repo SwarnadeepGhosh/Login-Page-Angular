@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegComponent implements OnInit {
 
+  public countries = ["Afghanistan","Albania","Algeria"];
   constructor() { }
 
   ngOnInit(): void {
   }
+/*
+{
+      "country": "Afghanistan"
+    },
+    {
+      "country": "Albania"
+    },
+    {
+      "country": "Algeria"
+    }
+*/
+
 
 }
