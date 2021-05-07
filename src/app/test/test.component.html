@@ -10,9 +10,13 @@
     <input #myInput type="text">
     <button (click)=log(myInput.value) class="m-3">Log input in console</button>
 
-    <!--Dependency Injection-->
+    <!--Dependency Injection + HTTP API calling-->
     <h3>Cars List</h3>
     <ul *ngFor="let car of cars">
         <li>{{car.id}} - {{car.brand}} - {{car.engine}}cc</li>
     </ul>
+
+    <h2>Routing and Navigation</h2>
+    <button type="button" routerLink="/test/departments" class="btn btn-outline-warning">Departments</button>
+    <button type="button" routerLink="/test/employees" class="btn btn-outline-info m-2">Employees</button>
 </div>

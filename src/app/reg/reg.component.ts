@@ -12,17 +12,6 @@ export class RegComponent implements OnInit {
 
   ngOnInit(): void {
   }
-/*
-{
-      "country": "Afghanistan"
-    },
-    {
-      "country": "Albania"
-    },
-    {
-      "country": "Algeria"
-    }
-*/
 
 
 }
