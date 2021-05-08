@@ -3,22 +3,23 @@
     <hr>
 
     <div class="justify-content-center align-items-center">
-        <form [formGroup]="myForm" (ngSubmit)="onSubmit()" >
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="userId">User Id : </label>
-                <input type="text" formControlName="userId" class="form-control" name="userId" placeholder="Enter User Id">
-                <div *ngIf="submitted && myForm.controls.userId.errors" class="error">
-                    <div *ngIf="myForm.controls.userId.errors.required" class="danger"> Sorry, Username is required</div>
+                <input [class.is-invalid]="userName.invalid && userName.touched" formControlName="userId" type="text" class="form-control" name="userId" placeholder="Enter User Id">
+                <div *ngIf="userName.invalid && userName.touched">
+                    <small *ngIf="userName.errors?.required" class="text-danger">Username is required</small>
+                    <small *ngIf="userName.errors?.minLength" class="text-danger">Username should minimum 3 digits</small>
                 </div>
+
             </div>
 
             <div class="form-group">
                 <label for="password">Password : </label>
                 <input type="password" formControlName="pass" class="form-control" name="password" placeholder="Enter Password">
-                <div *ngIf="submitted && myForm.controls.pass.errors" class="error">
-                    <div *ngIf="myForm.controls.pass.errors.required" class="danger"> Sorry, Username is required</div>
-                </div>
+
             </div>
+
             <a routerLink="/reg"><button type="button" class="btn btn-link">Not Registered? Register Here</button></a>
             <input type="submit" class="btn btn-primary float-right" value="Login">
             <h5 *ngIf="success" class="successs mt-4">Login successful</h5>
@@ -32,3 +33,11 @@
         </div>
     </div>
 </div>
+
+<!--<div *ngIf="submitted && myForm.controls.userId.errors" class="error">
+                    <small *ngIf="myForm.controls.userId.errors.required" class="danger"> Sorry, Username is required</small>
+</div>-->
+
+<!--<div *ngIf="submitted && myForm.controls.pass.errors" class="error">
+                    <small *ngIf="myForm.controls.pass.errors.required" class="danger"> Sorry, Password is required</small>
+</div>-->
