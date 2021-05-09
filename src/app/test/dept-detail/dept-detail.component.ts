@@ -17,7 +17,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 })
 export class DeptDetailComponent implements OnInit {
   //public departmentId!: String | null;
-  public departmentId!: Number ;
+  public departmentId!: any ;
 
   //injecting activated route for getting router from address bar
   constructor(private route: ActivatedRoute, private router: Router) {   }
@@ -27,20 +27,19 @@ export class DeptDetailComponent implements OnInit {
     //this.departmentId = this.route.snapshot.paramMap.get('id'); 
     this.route.paramMap.subscribe((params:ParamMap) => {
       this.departmentId = parseInt(params.get('id')!);
-      //this.departmentId = parseInt(params.get('id')!== null ? params.get('id') : throw new Error('Some error'));
     });
   }
 
   goPrevious(){
     console.log("previous");
-    //let previousId = parseInt(this.departmentId) - 1;
-    //this.router.navigate(['/test/departments',previousId]);
+    let previousId = parseInt(this.departmentId) - 1;
+    this.router.navigate(['/test/departments',previousId]);
   }
 
   goNext(){
     console.log("next");
-    //let nextId = parseInt(this.departmentId) + 1;
-    //this.router.navigate(['/test/departments',nextId]);
+    let nextId = parseInt(this.departmentId) + 1;
+    this.router.navigate(['/test/departments',nextId]);
   }
 
 }
