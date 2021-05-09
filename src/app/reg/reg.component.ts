@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegService } from '../reg.service';
+import {  ICountries, RegService } from '../reg.service';
 
 @Component({
   selector: 'app-reg',
@@ -9,21 +9,8 @@ import { RegService } from '../reg.service';
 })
 export class RegComponent implements OnInit {
 
-  public countries: { country: string; }[]  = [ ];
-
-  public companies: string[] = [
-    "Wal-Mart Stores",
-    "Exxon Mobil",
-    "Tata Consultancy Services Ltd",
-    "Infosys Ltd.",
-    "Berkshire Hathaway",
-    "Apple",
-    "Phillips 66",
-    "General Motors",
-    "Ford Motor",
-    "General Electric",
-    "Microsoft"
-  ];
+  public countries: ICountries[]  = [ ];
+  public companies: String[] = [ ];
 
   regForm: FormGroup;
   submitted = false;
@@ -32,18 +19,19 @@ export class RegComponent implements OnInit {
   get userName() {
     return this.regForm.get('userId');
   }
-
   get password() {
     return this.regForm.get('pass');
   }
+  get age(){ return this.regForm.get('age'); }
+  get phone(){ return this.regForm.get('phone'); }
 
   constructor(private fb: FormBuilder,private regService: RegService) {
     this.regForm = this.fb.group({
       name: [''],
-      age: [''],
+      age: ['',[Validators.maxLength(2),Validators.pattern('[0-9]*$')]],
       company: [''],
       country: [''],
-      phone: [''],
+      phone: ['',[Validators.minLength(10),Validators.maxLength(10),Validators.pattern('[0-9]*$')]],
       gender: [''],
       userId: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9\-]+$")]],
       pass: ['', [Validators.required, Validators.minLength(6)]],
@@ -51,7 +39,9 @@ export class RegComponent implements OnInit {
     });
   }
   ngOnInit(): void { 
-    this.countries = this.regService.getCountries();
+    this.regService.getCountries().subscribe(data => this.countries = data);
+    this.regService.getCompanies().subscribe(data => this.companies = data);
+
   }
 
   onSubmit() {
