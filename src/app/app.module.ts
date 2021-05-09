@@ -13,6 +13,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { DeptListComponent } from './test/dept-list/dept-list.component';
 import { DeptDetailComponent } from './test/dept-detail/dept-detail.component';
 import { EmpComponent } from './test/emp/emp.component'
+import { RegService } from './reg.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { EmpComponent } from './test/emp/emp.component'
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [CarService],
+  providers: [CarService,RegService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
