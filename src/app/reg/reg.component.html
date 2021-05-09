@@ -100,7 +100,8 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label"> Confirm Password:</label>
                 <div class="col-sm-10">
-                    <input formControlName="confirm" type="password" class="form-control" placeholder="Confirm your password">
+                    <input [class.is-invalid]="regForm.errors?.misMatch" formControlName="confirm" type="password" class="form-control" placeholder="Confirm your password">
+                    <small *ngIf="regForm.errors?.misMatch" class="text-danger">Password did not match</small>
                 </div>
             </div>
 

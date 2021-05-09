@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {  ICountries, RegService } from '../reg.service';
+import { PasswordValidator } from '../shared/password.validator';
 
 @Component({
   selector: 'app-reg',
@@ -36,7 +37,7 @@ export class RegComponent implements OnInit {
       userId: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9\-]+$")]],
       pass: ['', [Validators.required, Validators.minLength(6)]],
       confirm: ['']
-    });
+    }, {validator: PasswordValidator});
   }
   ngOnInit(): void { 
     this.regService.getCountries().subscribe(data => this.countries = data);
