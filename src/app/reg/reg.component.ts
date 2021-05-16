@@ -4,6 +4,7 @@ import { User } from '../models/user';
 import { ICountries, RegService } from '../services/reg.service';
 import { UserService } from '../services/user.service';
 import { PasswordValidator } from '../shared/password.validator';
+import * as alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-reg',
@@ -50,26 +51,11 @@ export class RegComponent implements OnInit {
     this.regService.getCompanies().subscribe(data => this.companies = data);
   }
 
-  // After creating UserService class, confirm password is saving in local storage. But we dont want to save that. 
-  // So created User Model and initialising values in the userData() method.
-  // userData(): User {
-  //   return this.user = {
-  //     name: this.name.value,
-  //     age: this.age.value,
-  //     company: this.company.value,
-  //     country: this.country.value,
-  //     phone: this.phone.value,
-  //     gender: this.gender.value,
-  //     username: this.userName.value,
-  //     password: this.password.value
-  //   }
-  // }
-
   onSubmit() {
     this.hasSubmitted = true;
     if (this.regForm.valid) {
       //console.log(this.regForm.value);
-      let user = {
+      let user: User = {
         name: this.name.value,
         age: this.age.value,
         company: this.company.value,
@@ -85,7 +71,26 @@ export class RegComponent implements OnInit {
       //localStorage.setItem('Users',JSON.stringify(this.regForm.value));
       this.regForm.reset();
       this.hasSubmitted = false;
+      alertify.success('Congrats !! you are successfully registered');
+    }
+    else{
+      alertify.error('Kindly provide the required fields');
     }
   }
 
 }
+
+  // After creating UserService class, confirm password is saving in local storage. But we dont want to save that. 
+  // So created User Model and initialising values in the userData() method.
+  // userData(): User {
+  //   return this.user = {
+  //     name: this.name.value,
+  //     age: this.age.value,
+  //     company: this.company.value,
+  //     country: this.country.value,
+  //     phone: this.phone.value,
+  //     gender: this.gender.value,
+  //     username: this.userName.value,
+  //     password: this.password.value
+  //   }
+  // }
