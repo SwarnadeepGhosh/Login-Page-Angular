@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from '../models/user';
 import { ICountries, RegService } from '../services/reg.service';
 import { UserService } from '../services/user.service';
 import { PasswordValidator } from '../shared/password.validator';
@@ -13,31 +14,35 @@ export class RegComponent implements OnInit {
 
   public countries: ICountries[] = [];
   public companies: String[] = [];
+  //user: User;
 
   regForm: FormGroup;
   submitted = false;
   success = false;
+  hasSubmitted: boolean;
 
-  get userName() {
-    return this.regForm.get('userId');
-  }
-  get password() {
-    return this.regForm.get('pass');
-  }
+  get name() { return this.regForm.get('name'); }
   get age() { return this.regForm.get('age'); }
+  get company() { return this.regForm.get('company'); }
+  get country() { return this.regForm.get('country'); }
   get phone() { return this.regForm.get('phone'); }
+  get gender() { return this.regForm.get('gender'); }
+  get userName() { return this.regForm.get('userId'); }
+  get password() { return this.regForm.get('pass'); }
+  get confirm() { return this.regForm.get('confirm'); }
+
 
   constructor(private fb: FormBuilder, private regService: RegService, private userService: UserService) {
     this.regForm = this.fb.group({
-      name: [''],
-      age: ['', [Validators.maxLength(2), Validators.pattern('[0-9]*$')]],
-      company: [''],
-      country: [''],
-      phone: ['', [Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[0-9]*$')]],
-      gender: [''],
+      name: ['', Validators.required],
+      age: ['', [Validators.required, Validators.maxLength(2), Validators.pattern('[0-9]*$')]],
+      company: ['', Validators.required],
+      country: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[0-9]*$')]],
+      gender: ['', Validators.required],
       userId: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9\-]+$")]],
       pass: ['', [Validators.required, Validators.minLength(6)]],
-      confirm: ['']
+      confirm: ['', Validators.required]
     }, { validator: PasswordValidator });
   }
   ngOnInit(): void {
@@ -45,33 +50,42 @@ export class RegComponent implements OnInit {
     this.regService.getCompanies().subscribe(data => this.companies = data);
   }
 
+  // After creating UserService class, confirm password is saving in local storage. But we dont want to save that. 
+  // So created User Model and initialising values in the userData() method.
+  // userData(): User {
+  //   return this.user = {
+  //     name: this.name.value,
+  //     age: this.age.value,
+  //     company: this.company.value,
+  //     country: this.country.value,
+  //     phone: this.phone.value,
+  //     gender: this.gender.value,
+  //     username: this.userName.value,
+  //     password: this.password.value
+  //   }
+  // }
+
   onSubmit() {
-    console.log(this.regForm.value);
-    this.addUser(this.regForm.value);
-    //localStorage.setItem('Users',JSON.stringify(this.regForm.value));
-    this.regForm.reset();
-  }
-  addUser(user: any) {
-    //Using Localstorage
-    let users: any[];
-    let localItem: string;
+    this.hasSubmitted = true;
+    if (this.regForm.valid) {
+      //console.log(this.regForm.value);
+      let user = {
+        name: this.name.value,
+        age: this.age.value,
+        company: this.company.value,
+        country: this.country.value,
+        phone: this.phone.value,
+        gender: this.gender.value,
+        username: this.userName.value,
+        password: this.password.value
+      }
 
-    //checking if localstorage already present, and if present, assining it to users.
-    localItem = localStorage.getItem('users');
-    if (localItem == null) {
-      users = [];
+      // This will go to Userservice class and add the user to the existing users array in localstorage
+      this.userService.addUser(user);
+      //localStorage.setItem('Users',JSON.stringify(this.regForm.value));
+      this.regForm.reset();
+      this.hasSubmitted = false;
     }
-    else {
-      users = JSON.parse(localItem);
-    }
-    //pushing the user to the users Array and saving it into localstorage.
-    users.push(user);
-    localStorage.setItem('users', JSON.stringify(users));
   }
+
 }
-
-// this.submitted = true;
-// if (this.regForm.invalid) {
-//   return;
-// }
-// this.success = true;
