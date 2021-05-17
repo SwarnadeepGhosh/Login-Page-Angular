@@ -16,6 +16,7 @@ import { EmpComponent } from './test/emp/emp.component'
 import { RegService } from './services/reg.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
+import { SuccessComponent } from './login/success/success.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AuthService } from './services/auth.service';
     PageNotFoundComponent,
     DeptListComponent,
     DeptDetailComponent,
-    EmpComponent
+    EmpComponent,
+    SuccessComponent
   ],
   imports: [
     BrowserModule,

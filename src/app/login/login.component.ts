@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as alertify from 'alertifyjs';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   get username(){ return this.loginForm.get('username'); }
   get password(){ return this.loginForm.get('password'); }
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router : Router) {
     this.loginForm = this.fb.group({
       username : ['',[Validators.required, Validators.pattern("^[a-zA-Z0-9\-]+$")]],
       password : ['',[Validators.required, Validators.minLength(6)]]
@@ -30,7 +31,8 @@ export class LoginComponent implements OnInit {
     const user = this.authService.authUser(this.loginForm.value);
     if (this.loginForm.valid) {
       if(user){ //if user have some value it will check and validate
-        alertify.success('You have logged in successfully')
+        alertify.success('You have logged in successfully');
+        this.router.navigate(['/success']);
       }
       else{ //if user is null or incorrect
         alertify.error('Please enter correct credentials')

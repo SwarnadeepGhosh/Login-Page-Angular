@@ -69,7 +69,7 @@ export class RegComponent implements OnInit {
       //localStorage.setItem('Users',JSON.stringify(this.regForm.value));
       this.regForm.reset();
       this.hasSubmitted = false;
-      alertify.success('Congrats !! you are successfully registered');
+      alertify.success('Congrats !! you are successfully registered. Please login now.');
     }
     else{
       alertify.error('Kindly provide the required fields');

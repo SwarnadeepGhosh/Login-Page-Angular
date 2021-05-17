@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { SuccessComponent } from './login/success/success.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegComponent } from './reg/reg.component';
 import { DeptDetailComponent } from './test/dept-detail/dept-detail.component';
@@ -11,6 +12,7 @@ import { TestComponent } from './test/test.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'success', component: SuccessComponent },
   { path: 'reg', component: RegComponent },
   { path: 'test', component: TestComponent },
   { path: 'test/departments', component: DeptListComponent },
