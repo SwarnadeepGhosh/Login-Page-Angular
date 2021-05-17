@@ -18,8 +18,6 @@ export class RegComponent implements OnInit {
   //user: User;
 
   regForm: FormGroup;
-  submitted = false;
-  success = false;
   hasSubmitted: boolean;
 
   get name() { return this.regForm.get('name'); }

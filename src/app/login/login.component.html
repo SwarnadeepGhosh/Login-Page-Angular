@@ -3,11 +3,11 @@
     <hr>
 
     <div class="justify-content-center align-items-center">
-        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label>User Id : </label>
-                <input [class.is-invalid]="userName.invalid && userName.touched" formControlName="userId" type="text" class="form-control" placeholder="Enter User Id">
-                <div *ngIf="userName.invalid && userName.touched">
+                <input [class.is-invalid]="userName.invalid && (userName.touched || hasSubmitted)" formControlName="userId" type="text" class="form-control" placeholder="Create a Username">
+                <div *ngIf="userName.invalid && (userName.touched || hasSubmitted)">
                     <small *ngIf="userName.errors?.required" class="text-danger">Username is required</small>
                     <small *ngIf="userName.errors?.pattern" class="text-danger">There should not be any special character in Username</small>
                 </div>
@@ -15,8 +15,8 @@
 
             <div class="form-group">
                 <label>Password : </label>
-                <input [class.is-invalid]="password.invalid && password.touched" formControlName="pass" type="password" class="form-control" placeholder="Enter Password">
-                <div *ngIf="password.invalid && password.touched">
+                <input [class.is-invalid]="password.invalid && (password.touched || hasSubmitted)" formControlName="pass" type="password" class="form-control" placeholder="Create a Password">
+                <div *ngIf="password.invalid && (password.touched || hasSubmitted)">
                     <small *ngIf="password.errors?.required" class="text-danger">Password is required</small>
                     <small *ngIf="password.errors?.minlength" class="text-danger">Password should be minimum 6 characters</small>
                 </div>
@@ -24,23 +24,22 @@
 
             <button routerLink="/reg" type="button" class="btn btn-secondary">Not Registered? Register Here</button>
             <input type="submit" class="btn btn-primary float-right" value="Login">
-            <h5 *ngIf="success" class="successs mt-4">Login successful</h5>
+            <!--<h5 *ngIf="success" class="successs mt-4">Login successful</h5>-->
         </form>
 
-        <!--{{myForm.value | json}}-->
-
+        <!--{{loginForm.value | json}}
         <div *ngIf="success" class="results">
             <strong>Username entered : </strong>
-            <span>{{myForm.controls.userId.value}}</span><br>
+            <span>{{loginForm.controls.userId.value}}</span><br>
             <strong>Password entered : </strong>
-            <span>{{myForm.controls.pass.value}}</span>
-        </div>
+            <span>{{loginForm.controls.pass.value}}</span>
+        </div>-->
     </div>
 </div>
 
-<!--<div *ngIf="submitted && myForm.controls.userId.errors" class="error">
-                    <small *ngIf="myForm.controls.userId.errors.required" class="danger"> Sorry, Username is required</small>
+<!--<div *ngIf="submitted && loginForm.controls.userId.errors" class="error">
+                    <small *ngIf="loginForm.controls.userId.errors.required" class="danger"> Sorry, Username is required</small>
 </div>-->
-<!--<div *ngIf="submitted && myForm.controls.pass.errors" class="error">
-                    <small *ngIf="myForm.controls.pass.errors.required" class="danger"> Sorry, Password is required</small>
+<!--<div *ngIf="submitted && loginForm.controls.pass.errors" class="error">
+                    <small *ngIf="loginForm.controls.pass.errors.required" class="danger"> Sorry, Password is required</small>
 </div>-->
