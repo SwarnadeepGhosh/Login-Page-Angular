@@ -103,7 +103,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Password : </label>
                 <div class="col-sm-10">
-                    <input [class.is-invalid]="password.invalid && (password.touched || hasSubmitted)" formControlName="pass" type="password" class="form-control" placeholder="Create a Password">
+                    <input [class.is-invalid]="password.invalid && (password.touched || hasSubmitted)" formControlName="pass" type="text" class="form-control" placeholder="Create a Password" id="password" autocomplete="off">
                     <div *ngIf="password.invalid && (password.touched || hasSubmitted)">
                         <small *ngIf="password.errors?.required" class="text-danger">Password is required</small>
                         <small *ngIf="password.errors?.minlength" class="text-danger">Password should be minimum 6 characters</small>
@@ -114,7 +114,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label"> Confirm Password:</label>
                 <div class="col-sm-10">
-                    <input [class.is-invalid]="regForm.errors?.misMatch" formControlName="confirm" type="password" class="form-control" placeholder="Confirm your password">
+                    <input [class.is-invalid]="regForm.errors?.misMatch" formControlName="confirm" type="text" class="form-control" placeholder="Confirm your password" id="cpassword" autocomplete="off">
                     <small *ngIf="regForm.errors?.misMatch" class="text-danger">Password did not match</small>
                     <div *ngIf="confirm.invalid && (confirm.touched || hasSubmitted)">
                         <small *ngIf="confirm.errors?.required" class="text-danger">Please confirm your password</small>
