@@ -15,6 +15,7 @@ import { DeptDetailComponent } from './test/dept-detail/dept-detail.component';
 import { EmpComponent } from './test/emp/emp.component'
 import { RegService } from './services/reg.service';
 import { UserService } from './services/user.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { UserService } from './services/user.service';
   providers: [
     CarService,
     RegService,
-    UserService
+    UserService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
