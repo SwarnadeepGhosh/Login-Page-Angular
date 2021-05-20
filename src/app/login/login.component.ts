@@ -28,14 +28,15 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.hasSubmitted = true;
     //console.log(this.loginForm.value);
-    const user = this.authService.authUser(this.loginForm.value);
+    const token = this.authService.authUser(this.loginForm.value);
     if (this.loginForm.valid) {
-      if(user){ //if user have some value it will check and validate
+      if(token){ //if user have some value it will check and validate
+        localStorage.setItem('token',token.username);
         alertify.success('You have logged in successfully');
         this.router.navigate(['/success']);
       }
       else{ //if user is null or incorrect
-        alertify.error('Please enter correct credentials')
+        alertify.error('Username or Password is wrong');
       }
       
       this.loginForm.reset();

@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-success',
   template: `
     <div class="jumbotron">
-      <h1 class="display-4">Hello, there!</h1>
+      <h1 class="display-4">Hello, {{loggedInUser}}</h1>
       <p class="lead">This is a secure page</p>
       <hr class="my-4">
       <div class="alert alert-success">
@@ -25,5 +25,5 @@ export class SuccessComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+  loggedInUser = localStorage.getItem('token');
 }
