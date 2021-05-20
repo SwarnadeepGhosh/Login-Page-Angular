@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-success',
   template: `
     <div class="jumbotron">
-      <h1 class="display-4">Hello, {{loggedInUser}}</h1>
+      <h3 class="display-4">Hello, {{loggedInUser}}</h3>
       <p class="lead">This is a secure page</p>
       <hr class="my-4">
       <div class="alert alert-success">

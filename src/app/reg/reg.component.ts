@@ -5,6 +5,7 @@ import { ICountries, RegService } from '../services/reg.service';
 import { UserService } from '../services/user.service';
 import { PasswordValidator } from '../shared/password.validator';
 import * as alertify from 'alertifyjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reg',
@@ -31,7 +32,7 @@ export class RegComponent implements OnInit {
   get confirm() { return this.regForm.get('confirm'); }
 
 
-  constructor(private fb: FormBuilder, private regService: RegService, private userService: UserService) {
+  constructor(private fb: FormBuilder, private regService: RegService, private userService: UserService, private router : Router) {
     this.regForm = this.fb.group({
       name: ['', Validators.required],
       age: ['', [Validators.required, Validators.maxLength(2), Validators.pattern('[0-9]*$')]],
@@ -70,6 +71,7 @@ export class RegComponent implements OnInit {
       this.regForm.reset();
       this.hasSubmitted = false;
       alertify.success('Congrats !! you are successfully registered. Please login now.');
+      this.router.navigate(['/']);
     }
     else{
       alertify.error('Kindly provide the required fields');
