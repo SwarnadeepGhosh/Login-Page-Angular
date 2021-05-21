@@ -17,6 +17,9 @@ import { RegService } from './services/reg.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { SuccessComponent } from './login/success/success.component';
+import { AuthGuard } from './login/auth.guard';
+import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './login/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,9 @@ import { SuccessComponent } from './login/success/success.component';
     DeptListComponent,
     DeptDetailComponent,
     EmpComponent,
-    SuccessComponent
+    SuccessComponent,
+    HomeComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,8 @@ import { SuccessComponent } from './login/success/success.component';
     CarService,
     RegService,
     UserService,
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -18,4 +18,9 @@ export class AuthService {
     return userArray.find((p: { username: string; password: string; }) => 
         p.username === user.username && p.password === user.password);
   }
+
+  isLoggedIn(){
+    // If token exists return true, else return false.
+    return !!localStorage.getItem('token');
+  }
 }

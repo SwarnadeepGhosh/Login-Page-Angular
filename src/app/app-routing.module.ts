@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './login/auth.guard';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './login/profile/profile.component';
 import { SuccessComponent } from './login/success/success.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegComponent } from './reg/reg.component';
@@ -10,10 +13,12 @@ import { EmpComponent } from './test/emp/emp.component';
 import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'success', component: SuccessComponent },
+  { path: 'special', component: SuccessComponent, canActivate: [AuthGuard]},
   { path: 'reg', component: RegComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'test', component: TestComponent },
   { path: 'test/departments', component: DeptListComponent },
   //added a route with placeholder id parameter, which will be change according to click

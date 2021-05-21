@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       if(token){ //if user have some value it will check and validate
         localStorage.setItem('token',token.username);
         alertify.success('You have logged in successfully');
-        this.router.navigate(['/success']);
+        this.router.navigate(['/special']);
       }
       else{ //if user is null or incorrect
         alertify.error('Username or Password is wrong');
