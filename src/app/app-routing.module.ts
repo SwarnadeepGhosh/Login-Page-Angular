@@ -7,7 +7,9 @@ import { ProfileComponent } from './login/profile/profile.component';
 import { SuccessComponent } from './login/success/success.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegComponent } from './reg/reg.component';
+import { ContactsComponent } from './test/dept-detail/contacts/contacts.component';
 import { DeptDetailComponent } from './test/dept-detail/dept-detail.component';
+import { OverviewComponent } from './test/dept-detail/overview/overview.component';
 import { DeptListComponent } from './test/dept-list/dept-list.component';
 import { EmpComponent } from './test/emp/emp.component';
 import { TestComponent } from './test/test.component';
@@ -22,7 +24,14 @@ const routes: Routes = [
   { path: 'test', component: TestComponent },
   { path: 'test/departments', component: DeptListComponent },
   //added a route with placeholder id parameter, which will be change according to click
-  { path: 'test/departments/:id', component: DeptDetailComponent },
+  { 
+    path: 'test/departments/:id', 
+    component: DeptDetailComponent,
+    children: [ //Adding child routes
+      {path: 'overview', component: OverviewComponent},
+      {path: 'contacts', component: ContactsComponent}
+    ]
+  },
   { path: 'test/employees', component: EmpComponent },
   { path: '**', component: PageNotFoundComponent },
 ];

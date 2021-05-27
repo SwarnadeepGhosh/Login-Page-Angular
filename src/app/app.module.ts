@@ -20,6 +20,8 @@ import { SuccessComponent } from './login/success/success.component';
 import { AuthGuard } from './login/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './login/profile/profile.component';
+import { OverviewComponent } from './test/dept-detail/overview/overview.component';
+import { ContactsComponent } from './test/dept-detail/contacts/contacts.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { ProfileComponent } from './login/profile/profile.component';
     EmpComponent,
     SuccessComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    OverviewComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,
