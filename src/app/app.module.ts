@@ -22,6 +22,7 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './login/profile/profile.component';
 import { OverviewComponent } from './test/dept-detail/overview/overview.component';
 import { ContactsComponent } from './test/dept-detail/contacts/contacts.component';
+import {DisableDragDropDirective} from './directives/disable-drag-drop.directive';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ContactsComponent } from './test/dept-detail/contacts/contacts.componen
     HomeComponent,
     ProfileComponent,
     OverviewComponent,
-    ContactsComponent
+    ContactsComponent,
+    DisableDragDropDirective
   ],
   imports: [
     BrowserModule,

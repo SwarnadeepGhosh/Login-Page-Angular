@@ -33,8 +33,26 @@ export class TestComponent implements OnInit {
     console.log(value);
   }
 
-}
+  /*
+  disableDragEvent(event: any){
+    event.preventDefault();
+    console.log('Drag event called')
+    return false;
+  }
+  disableDropEvent(event: any){
+    event.preventDefault();
+    console.log('Drop event called')
+    return false;
+  }
+  disableDragenterEvent(event: any){
+    event.preventDefault();
+    console.log('Dragenter event called')
+    return false;
+  }
+  */
 
+  
+}
 
 //setTimeout(() => {
     //  this.title = "Learner";
